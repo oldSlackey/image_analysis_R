@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "## This project created to build predictors for image analysis\n## Chosen dataset is the MNIST handwriting dataset, will use a decision tree to start\n## then possibly move onto test some different predictive models\n## first thing, load up tidyverse, as I am sure it will come in handy\nlibrary(tidyverse)\n## get decision tree package\nlibrary(rpart)\n## load up mnist training data, remember there are no column names\nmnist_train <- read_delim(\"../datasets/MNIST/mnist_train.csv\", delim = \",\", col_names = FALSE)\n## change column name of column with labels to something sensible...\ncolnames(mnist_train)[1] <- \"number\"\n## grow tree\nfit <- rpart(number ~ ., data = mnist_train, method = \"class\")\n## have a quick look\nsummary(fit)\n## load up test data\nmnist_test <- read_delim(\"../datasets/MNIST/mnist_test.csv\", delim = \",\", col_names = FALSE)\n## and change label column name to something sensible\ncolnames(mnist_test)[1] <- \"number\"\n## check columns are identical\nall.equal(colnames(mnist_train), colnames(mnist_test))\n## use model to predict number\npredicted <- predict(fit, mnist_test)\n## look at predictions\nsummary(predicted)\npredicted\n",
+    "created" : 1528810426430.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3962984989",
+    "id" : "E0546DC8",
+    "lastKnownWriteTime" : 1528879431,
+    "last_content_update" : 1528879431402,
+    "path" : "~/develop/image_analysis/decisionTree/imageDTreee.R",
+    "project_path" : "imageDTreee.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
